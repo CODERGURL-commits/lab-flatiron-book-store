@@ -45,3 +45,50 @@ const bookStore = {
 
 // Write your code here!
 
+// select Title Element.
+const bookStoreTitle = document.getElementById("header");
+
+// change Element To Match Bookstore Name.
+
+bookStoreTitle.textContent = bookStore.name;
+// create book elements
+
+const bookList = document.getElementById("book-list");
+
+// remove placeholder
+let placeholder = document.getElementById("delete-this");
+
+// loop through every book.
+
+bookStore.books.forEach((book, index) => {
+    let bookContainer;
+
+    if (index === 0 && placeholder) {
+        bookContainer = placeholder;
+        bookContainer.innerHTML = ""; // cleared placeholder content
+    } else {
+        bookContainer = document.createElement("li");
+    }
+
+    const bookTitle = document.createElement("h3");
+    const bookAuthor = document.createElement("p");
+    const bookImage = document.createElement("img");
+
+    // Set content
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title;
+
+    // Append elements to the container
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    // Append new <li> elements to book list (skip the first placeholder)
+    if (index !== 0) {
+        bookList.appendChild(bookContainer);
+    }
+});
+
+
